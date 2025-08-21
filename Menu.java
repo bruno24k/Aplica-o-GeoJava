@@ -3,7 +3,7 @@ import java.util.Scanner;
 public class Menu {
     private Scanner scanner = new Scanner(System.in);
 
-    // Geometria Plana
+    
     private double areaCirculo(double raio) { return Math.PI * raio * raio; }
     private double perimetroCirculo(double raio) { return 2 * Math.PI * raio; }
     private double areaRetangulo(double base, double altura) { return base * altura; }
@@ -13,7 +13,7 @@ public class Menu {
     private double areaPoligonoRegular(int lados, double compLado, double apotema) { return (lados * compLado * apotema) / 2; }
     private double perimetroPoligonoRegular(int lados, double compLado) { return lados * compLado; }
 
-    // Geometria Espacial
+
     private double volumeCubo(double lado) { return Math.pow(lado, 3); }
     private double areaCubo(double lado) { return 6 * Math.pow(lado, 2); }
     private double volumeEsfera(double raio) { return (4.0 / 3.0) * Math.PI * Math.pow(raio, 3); }

@@ -1,5 +1,5 @@
 public class GeometriaPlana {
-    // Círculo
+    
     public double areaCirculo(double raio) {
         return Math.PI * raio * raio;
     }
@@ -7,7 +7,7 @@ public class GeometriaPlana {
         return 2 * Math.PI * raio;
     }
 
-    // Retângulo
+    
     public double areaRetangulo(double base, double altura) {
         return base * altura;
     }
