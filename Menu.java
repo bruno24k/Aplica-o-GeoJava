@@ -1,29 +1,27 @@
 import java.util.Scanner;
 
 public class Menu {
-    private Scanner scanner = new Scanner(System.in);
+    private Scanner entrada = new Scanner(System.in);
 
-    
-    private double areaCirculo(double raio) { return Math.PI * raio * raio; }
-    private double perimetroCirculo(double raio) { return 2 * Math.PI * raio; }
-    private double areaRetangulo(double base, double altura) { return base * altura; }
-    private double perimetroRetangulo(double base, double altura) { return 2 * (base + altura); }
-    private double areaTriangulo(double base, double altura) { return (base * altura) / 2; }
-    private double perimetroTriangulo(double l1, double l2, double l3) { return l1 + l2 + l3; }
-    private double areaPoligonoRegular(int lados, double compLado, double apotema) { return (lados * compLado * apotema) / 2; }
-    private double perimetroPoligonoRegular(int lados, double compLado) { return lados * compLado; }
+    private double calcularAreaCirculo(double raio) { return Math.PI * raio * raio; }
+    private double calcularPerimetroCirculo(double raio) { return 2 * Math.PI * raio; }
+    private double calcularAreaRetangulo(double largura, double altura) { return largura * altura; }
+    private double calcularPerimetroRetangulo(double largura, double altura) { return 2 * (largura + altura); }
+    private double calcularAreaTriangulo(double base, double altura) { return (base * altura) / 2; }
+    private double calcularPerimetroTriangulo(double ladoA, double ladoB, double ladoC) { return ladoA + ladoB + ladoC; }
+    private double calcularAreaPoligonoRegular(int numeroLados, double tamanhoLado, double apotema) { return (numeroLados * tamanhoLado * apotema) / 2; }
+    private double calcularPerimetroPoligonoRegular(int numeroLados, double tamanhoLado) { return numeroLados * tamanhoLado; }
 
+    private double calcularVolumeCubo(double comprimentoLado) { return Math.pow(comprimentoLado, 3); }
+    private double calcularAreaCubo(double comprimentoLado) { return 6 * Math.pow(comprimentoLado, 2); }
+    private double calcularVolumeEsfera(double raio) { return (4.0 / 3.0) * Math.PI * Math.pow(raio, 3); }
+    private double calcularAreaEsfera(double raio) { return 4 * Math.PI * Math.pow(raio, 2); }
+    private double calcularVolumeCilindro(double raioBase, double altura) { return Math.PI * Math.pow(raioBase, 2) * altura; }
+    private double calcularAreaCilindro(double raioBase, double altura) { return 2 * Math.PI * raioBase * (raioBase + altura); }
+    private double calcularVolumePrisma(double areaBase, double altura) { return areaBase * altura; }
+    private double calcularAreaPrisma(double areaBase, double perimetroBase, double altura) { return 2 * areaBase + perimetroBase * altura; }
 
-    private double volumeCubo(double lado) { return Math.pow(lado, 3); }
-    private double areaCubo(double lado) { return 6 * Math.pow(lado, 2); }
-    private double volumeEsfera(double raio) { return (4.0 / 3.0) * Math.PI * Math.pow(raio, 3); }
-    private double areaEsfera(double raio) { return 4 * Math.PI * Math.pow(raio, 2); }
-    private double volumeCilindro(double raio, double altura) { return Math.PI * Math.pow(raio, 2) * altura; }
-    private double areaCilindro(double raio, double altura) { return 2 * Math.PI * raio * (raio + altura); }
-    private double volumePrisma(double areaBase, double altura) { return areaBase * altura; }
-    private double areaPrisma(double areaBase, double perimetroBase, double altura) { return 2 * areaBase + perimetroBase * altura; }
-
-    public void exibirMenu() {
+    public void mostrarMenu() {
         int opcao;
         do {
             System.out.println("\n===== MENU GEOMETRIA =====");
@@ -31,7 +29,7 @@ public class Menu {
             System.out.println("2. Geometria Espacial");
             System.out.println("0. Sair");
             System.out.print("Escolha uma opção: ");
-            opcao = scanner.nextInt();
+            opcao = entrada.nextInt();
             switch (opcao) {
                 case 1: menuPlana(); break;
                 case 2: menuEspacial(); break;
@@ -39,7 +37,7 @@ public class Menu {
                 default: System.out.println("Opção inválida!");
             }
         } while (opcao != 0);
-        scanner.close();
+        entrada.close();
     }
 
     private void menuPlana() {
@@ -49,45 +47,45 @@ public class Menu {
         System.out.println("3. Triângulo");
         System.out.println("4. Polígono Regular");
         System.out.print("Escolha a figura: ");
-        int fig = scanner.nextInt();
-        switch (fig) {
+        int figura = entrada.nextInt();
+        switch (figura) {
             case 1:
                 System.out.print("Raio: ");
-                double raio = scanner.nextDouble();
-                System.out.printf("Área: %.2f\n", areaCirculo(raio));
-                System.out.printf("Perímetro: %.2f\n", perimetroCirculo(raio));
+                double raio = entrada.nextDouble();
+                System.out.printf("Área: %.2f\n", calcularAreaCirculo(raio));
+                System.out.printf("Perímetro: %.2f\n", calcularPerimetroCirculo(raio));
                 break;
             case 2:
-                System.out.print("Base: ");
-                double base = scanner.nextDouble();
+                System.out.print("Largura: ");
+                double largura = entrada.nextDouble();
                 System.out.print("Altura: ");
-                double altura = scanner.nextDouble();
-                System.out.printf("Área: %.2f\n", areaRetangulo(base, altura));
-                System.out.printf("Perímetro: %.2f\n", perimetroRetangulo(base, altura));
+                double altura = entrada.nextDouble();
+                System.out.printf("Área: %.2f\n", calcularAreaRetangulo(largura, altura));
+                System.out.printf("Perímetro: %.2f\n", calcularPerimetroRetangulo(largura, altura));
                 break;
             case 3:
                 System.out.print("Base: ");
-                double baseT = scanner.nextDouble();
+                double baseT = entrada.nextDouble();
                 System.out.print("Altura: ");
-                double alturaT = scanner.nextDouble();
-                System.out.print("Lado 1: ");
-                double l1 = scanner.nextDouble();
-                System.out.print("Lado 2: ");
-                double l2 = scanner.nextDouble();
-                System.out.print("Lado 3: ");
-                double l3 = scanner.nextDouble();
-                System.out.printf("Área: %.2f\n", areaTriangulo(baseT, alturaT));
-                System.out.printf("Perímetro: %.2f\n", perimetroTriangulo(l1, l2, l3));
+                double alturaT = entrada.nextDouble();
+                System.out.print("Lado A: ");
+                double ladoA = entrada.nextDouble();
+                System.out.print("Lado B: ");
+                double ladoB = entrada.nextDouble();
+                System.out.print("Lado C: ");
+                double ladoC = entrada.nextDouble();
+                System.out.printf("Área: %.2f\n", calcularAreaTriangulo(baseT, alturaT));
+                System.out.printf("Perímetro: %.2f\n", calcularPerimetroTriangulo(ladoA, ladoB, ladoC));
                 break;
             case 4:
                 System.out.print("Número de lados: ");
-                int lados = scanner.nextInt();
-                System.out.print("Comprimento do lado: ");
-                double compLado = scanner.nextDouble();
+                int numeroLados = entrada.nextInt();
+                System.out.print("Tamanho do lado: ");
+                double tamanhoLado = entrada.nextDouble();
                 System.out.print("Apótema: ");
-                double apotema = scanner.nextDouble();
-                System.out.printf("Área: %.2f\n", areaPoligonoRegular(lados, compLado, apotema));
-                System.out.printf("Perímetro: %.2f\n", perimetroPoligonoRegular(lados, compLado));
+                double apotema = entrada.nextDouble();
+                System.out.printf("Área: %.2f\n", calcularAreaPoligonoRegular(numeroLados, tamanhoLado, apotema));
+                System.out.printf("Perímetro: %.2f\n", calcularPerimetroPoligonoRegular(numeroLados, tamanhoLado));
                 break;
             default:
                 System.out.println("Figura inválida!");
@@ -101,37 +99,37 @@ public class Menu {
         System.out.println("3. Cilindro");
         System.out.println("4. Prisma Reto de Base Regular");
         System.out.print("Escolha o sólido: ");
-        int solido = scanner.nextInt();
+        int solido = entrada.nextInt();
         switch (solido) {
             case 1:
-                System.out.print("Lado: ");
-                double lado = scanner.nextDouble();
-                System.out.printf("Volume: %.2f\n", volumeCubo(lado));
-                System.out.printf("Área superficial: %.2f\n", areaCubo(lado));
+                System.out.print("Comprimento do lado: ");
+                double comprimentoLado = entrada.nextDouble();
+                System.out.printf("Volume: %.2f\n", calcularVolumeCubo(comprimentoLado));
+                System.out.printf("Área superficial: %.2f\n", calcularAreaCubo(comprimentoLado));
                 break;
             case 2:
                 System.out.print("Raio: ");
-                double raio = scanner.nextDouble();
-                System.out.printf("Volume: %.2f\n", volumeEsfera(raio));
-                System.out.printf("Área superficial: %.2f\n", areaEsfera(raio));
+                double raio = entrada.nextDouble();
+                System.out.printf("Volume: %.2f\n", calcularVolumeEsfera(raio));
+                System.out.printf("Área superficial: %.2f\n", calcularAreaEsfera(raio));
                 break;
             case 3:
-                System.out.print("Raio: ");
-                double raioC = scanner.nextDouble();
+                System.out.print("Raio da base: ");
+                double raioBase = entrada.nextDouble();
                 System.out.print("Altura: ");
-                double alturaC = scanner.nextDouble();
-                System.out.printf("Volume: %.2f\n", volumeCilindro(raioC, alturaC));
-                System.out.printf("Área superficial: %.2f\n", areaCilindro(raioC, alturaC));
+                double alturaCilindro = entrada.nextDouble();
+                System.out.printf("Volume: %.2f\n", calcularVolumeCilindro(raioBase, alturaCilindro));
+                System.out.printf("Área superficial: %.2f\n", calcularAreaCilindro(raioBase, alturaCilindro));
                 break;
             case 4:
                 System.out.print("Área da base: ");
-                double areaBase = scanner.nextDouble();
+                double areaBase = entrada.nextDouble();
                 System.out.print("Perímetro da base: ");
-                double perimetroBase = scanner.nextDouble();
+                double perimetroBase = entrada.nextDouble();
                 System.out.print("Altura: ");
-                double alturaP = scanner.nextDouble();
-                System.out.printf("Volume: %.2f\n", volumePrisma(areaBase, alturaP));
-                System.out.printf("Área superficial: %.2f\n", areaPrisma(areaBase, perimetroBase, alturaP));
+                double alturaPrisma = entrada.nextDouble();
+                System.out.printf("Volume: %.2f\n", calcularVolumePrisma(areaBase, alturaPrisma));
+                System.out.printf("Área superficial: %.2f\n", calcularAreaPrisma(areaBase, perimetroBase, alturaPrisma));
                 break;
             default:
                 System.out.println("Sólido inválido!");
@@ -139,6 +137,6 @@ public class Menu {
     }
 
     public static void main(String[] args) {
-        new Menu().exibirMenu();
+        new Menu().mostrarMenu();
     }
 }
